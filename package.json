@@ -1,0 +1,19 @@
+{
+  "name": "ads-analytics-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "fetchDataAds.js",
+  "scripts": {
+    "start": "node fetchDataAds.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "axios": "^1.7.7",
+    "dotenv": "^16.4.5"
+  },
+  "devDependencies": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module" 
+}
