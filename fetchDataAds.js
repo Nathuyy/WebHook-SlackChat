@@ -10,12 +10,11 @@ export async function fetchDataAds() {
 
     try {
         const response = await axios.get(url)
-        console.log(response.data);
-        return response.data
+       // console.log(response.data);
+       return response.data.data;
     } catch (error) {
         console.error('Error fetching data from Windsor.ai:', error); 
 
     }
 }
 
-fetchDataAds()
