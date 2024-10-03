@@ -6,9 +6,6 @@ dotenv.config();
 export async function updateGoogleSheets(data) {
     const sheetDBUrl = process.env.SHEETDB_API_URL;
 
-    console.log("SheetDB URL:", sheetDBUrl);
-    console.log("Data received in updateGoogleSheets:", data);
-
     if (!Array.isArray(data)) {
         console.error("Expected data to be an array, but got:", typeof data);
         return; 
@@ -25,7 +22,6 @@ export async function updateGoogleSheets(data) {
 
     try {
         const response = await axios.post(sheetDBUrl, { data: formattedData });
-        console.log("Data sent to SheetDB:", response.data);
     } catch (error) {
         console.error('Error sending data to SheetDB:', error);
     }
