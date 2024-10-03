@@ -1,17 +1,24 @@
 import { fetchDataAds } from "./fetchDataAds.js";
 import { updateGoogleSheets } from "./updateGoogleSheets.js";
 import { SendMessage } from "./sendMessage.js";
+import cron from "node-cron";
 
-(async () => {
-  const data = await fetchDataAds();
+cron.schedule("0 * * * * ", async () => {
+  console.log("start!");
 
-  const formattedData = Object.entries(data[0])
-    .map(([key, value]) => `${key}: ${value}`)
-    .join("\n");
+  try {
+    const data = await fetchDataAds();
 
-  SendMessage(formattedData);
+    const formattedData = Object.entries(data[0])
+      .map(([key, value]) => `${key}: ${value}`)
+      .join("\n");
 
-  console.log("envio de dados finalizado!");
+    SendMessage(formattedData);
 
-  await updateGoogleSheets(data);
-})();
+    console.log("Envio de dados finalizado!");
+
+    await updateGoogleSheets(data);
+  } catch (error) {
+    console.error("Erro ao executar cron job:", error);
+  }
+});
