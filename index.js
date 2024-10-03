@@ -1,5 +1,5 @@
 import { fetchDataAds } from "./fetchDataAds.js";
-import { updateGoogleSheets } from "./updateGoogleSheets.js";
+import { deleteSheetsData, updateGoogleSheets } from "./updateGoogleSheets.js";
 import { SendMessage } from "./sendMessage.js";
 import cron from "node-cron";
 
@@ -7,6 +7,7 @@ cron.schedule("0 * * * * ", async () => {
   console.log("start!");
 
   try {
+    await deleteSheetsData();
     const data = await fetchDataAds();
 
     const formattedData = Object.entries(data[0])
@@ -22,3 +23,6 @@ cron.schedule("0 * * * * ", async () => {
     console.error("Erro ao executar cron job:", error);
   }
 });
+
+
+
