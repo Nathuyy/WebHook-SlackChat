@@ -1,18 +1,20 @@
 import axios from "axios";
+import dotenv from "dotenv";
 
+
+dotenv.config();
 export const SendMessage = async (data) => {
   axios
     .post(
-      "https://discord.com/api/webhooks/1291434616166809611/UyRYCStpYilvJs95jVE2_vCgNeKa-LDAusmO8xGZth9_Nix4z_toRLkyzrCer4u7-9qP",
+      process.env.WEBHOOK_URL,
       {
-        content: data
+        text: data
       }
     )
     .then((response) => {
       console.log("Message sent successfully");
     })
     .catch((error) => {
-      console.error("trash discord");
+      console.error("error in sendMessage", error);
     });
 };
-
