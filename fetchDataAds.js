@@ -26,7 +26,7 @@ const fields = [
 
 export async function fetchDataAds() {
     const apiKey = process.env.WINDSOR_API_KEY;
-    const url = `https://connectors.windsor.ai/facebook?api_key=${apiKey}&date_from=2023-01-01&date_to=${new Date().toISOString().slice(0, 10)}&fields=${fields.join(',')}`;
+    const url = `https://connectors.windsor.ai/facebook?api_key=${apiKey}&date_preset=last_7d&fields=${fields.join(',')}`;
 
     try {
         const response = await axios.get(url);
